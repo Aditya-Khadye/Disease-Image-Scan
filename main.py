@@ -15,7 +15,7 @@ def preprocess_image(image_path, input_size=(224, 224)):
     
     # Normalize pixel values to the range [0, 1] and add channel dimension
     normalized_image = resized_image.astype(np.float32) / 255.0
-    expanded_image = np.expand_dims(normalized_image, axis=0)  # Add batch dimension
+    expanded_image = np.expand_dims(normalized_image, axis=0)  
 
     return expanded_image
 
@@ -34,7 +34,7 @@ def run_inference(session, input_tensor):
     return result[0]
 
 def main():
-    # Path to your ONNX model and input image
+    # Path to your ONNX model
     model_path = "model.onnx"
     image_path = "medical_image.jpg"
 
@@ -47,7 +47,7 @@ def main():
     # Run inference
     predictions = run_inference(session, input_tensor)
 
-    # Interpret and print the result
+    # Interpret and print result
     predicted_class = np.argmax(predictions)
     print(f"Predicted class: {predicted_class}")
 
